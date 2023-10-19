@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --default-blue-color: #3f51b5;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.text-color-error {
+    color: var(--bs-form-invalid-color);
+}
