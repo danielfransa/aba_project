@@ -1,0 +1,15 @@
+
+<div class="cliente">
+    <h1 class="text-center mt-4">Informações do Cliente</h1>
+    <div class="mt-4">
+        <button mat-fab extended color="primary" [routerLink]="['/']">
+            <mat-icon>arrow_back</mat-icon>
+            Voltar
+        </button>
+        
+    </div>  
+    <div class="mt-5">
+        <h5 class="me-1">Nome:</h5>
+        <p>{{cliente?.nome}}</p>
+    </div>  
+</div>

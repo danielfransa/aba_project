@@ -7,6 +7,7 @@ import { HomeModule } from './modules/home/home.module';
 import { CadastroClienteModule } from './modules/cadastro-cliente/cadastro-cliente.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
+import { ClienteModule } from './modules/cliente/cliente.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
     HomeModule,
     CadastroClienteModule,
     BrowserAnimationsModule,
+    ClienteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

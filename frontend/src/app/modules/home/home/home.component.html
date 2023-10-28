@@ -1,6 +1,29 @@
-<h1 class="text-center mt-4">Instituto Inclusivamente</h1>
-<div class="mt-4 d-flex">
-    <button mat-fab extended color="primary" [routerLink]="['/cadastro-cliente']">
-        Cadastrar novo cliente
-    </button>
+<div class="home">
+    <h1 class="text-center mt-4">Instituto Inclusivamente</h1>
+    <div class="mt-4 d-flex">
+        <button mat-fab extended color="primary" [routerLink]="['/cadastro-cliente']">
+            Cadastrar novo cliente
+        </button>
+    </div>   
+    <div class="home__list-client mt-5">
+        <mat-accordion>
+            <mat-expansion-panel class="mt-3 mb-3" *ngFor="let cliente of listaCliente">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h5>{{cliente.nome}}</h5>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="row">
+                <div class="col-6 d-flex">
+                    <h6 class="me-1">Email:</h6>
+                    <p>{{cliente.email}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                    <button mat-raised-button color="primary" [routerLink]="['/cliente', cliente.id]">Acessar cliente</button>                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>          
+    </div> 
 </div>
