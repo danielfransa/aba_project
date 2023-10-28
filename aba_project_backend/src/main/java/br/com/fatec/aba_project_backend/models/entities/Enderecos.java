@@ -19,22 +19,22 @@ public class Enderecos {
     @Column(nullable = false, length = 20)
     private String cep;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String rua;
 
     @Column
     private Integer numero;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String complemento;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String bairro;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String cidade;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String estado;
 
     @CreationTimestamp

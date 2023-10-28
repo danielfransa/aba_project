@@ -20,16 +20,16 @@ public class Responsaveis {
     @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String cpf;
 
-    @Column(nullable = true, length = 100)
+    @Column(length = 100)
     private String grauParentesco;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String email;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String telefone;
 
     @ManyToMany(mappedBy = "responsaveis")
