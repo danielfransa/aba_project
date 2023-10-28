@@ -6,38 +6,36 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity
-@Table(name = "responsaveis")
-public class Responsaveis {
+@Table(name = "enderecos")
+public class Enderecos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 100)
-    private String nome;
+    @Column(nullable = false, length = 20)
+    private String cep;
 
     @Column(nullable = true, length = 50)
-    private String cpf;
+    private String rua;
 
-    @Column(nullable = true, length = 100)
-    private String grauParentesco;
-
-    @Column(nullable = true, length = 50)
-    private String email;
+    @Column
+    private Integer numero;
 
     @Column(nullable = true, length = 50)
-    private String telefone;
+    private String complemento;
 
-    @ManyToMany(mappedBy = "responsaveis")
-    private List<Clientes> clientes;
+    @Column(nullable = true, length = 50)
+    private String bairro;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
-    private Enderecos endereco;
+    @Column(nullable = true, length = 50)
+    private String cidade;
+
+    @Column(nullable = true, length = 50)
+    private String estado;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
