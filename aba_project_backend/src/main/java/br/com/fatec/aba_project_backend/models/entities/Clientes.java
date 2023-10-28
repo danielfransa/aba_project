@@ -27,25 +27,25 @@ public class Clientes {
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String cpf;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String telefone;
 
-    @Column(nullable = true, length = 50)
+    @Column(length = 50)
     private String email;
 
-    @Column(nullable = true, length = 100)
+    @Column(length = 100)
     private String grauEscolaridade;
 
-    @Column(nullable = true, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String infoMedicas;
 
-    @Column(nullable = true, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String medicamentosEmUso;
 
-    @Column(nullable = true, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String dadosTratamento;
 
     @ManyToMany
