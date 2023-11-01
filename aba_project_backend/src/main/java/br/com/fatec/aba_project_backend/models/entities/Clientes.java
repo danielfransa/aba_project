@@ -48,6 +48,8 @@ public class Clientes {
     @Column(columnDefinition = "TEXT")
     private String dadosTratamento;
 
+
+    //TODO ajustar relacionamentos não esta funcionando com eles:
     @ManyToMany
     private List<Responsaveis> responsaveis;
 

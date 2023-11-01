@@ -21,6 +21,10 @@ public class BlocoAplicacoes {
     private Integer numero;
 
     @Column
+    @Temporal(TemporalType.DATE)
+    private Date dataAplicacao;
+
+    @Column
     private Integer score;
 
     @ManyToOne
