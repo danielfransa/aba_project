@@ -1,5 +1,6 @@
 package br.com.fatec.aba_project_backend.services;
 
+import br.com.fatec.aba_project_backend.api.resources.ClienteResources;
 import br.com.fatec.aba_project_backend.models.entities.Clientes;
 import br.com.fatec.aba_project_backend.repositories.ClienteRepository;
 import org.hibernate.ObjectNotFoundException;
@@ -18,7 +19,19 @@ public class ClienteService {
         this.repository = repository;
     }
 
-    public Clientes salvar(Clientes cliente){
+    public Clientes salvar(ClienteResources pCliente){
+        Clientes cliente = new Clientes();
+
+        cliente.setName(pCliente.getName());
+        cliente.setDataNascimento(pCliente.getDataNascimento());
+        cliente.setSexo(pCliente.getSexo());
+        cliente.setCpf(pCliente.getCpf());
+        cliente.setTelefone(pCliente.getTelefone());
+        cliente.setEmail(pCliente.getEmail());
+        cliente.setGrauEscolaridade(pCliente.getGrauEscolaridade());
+        cliente.setInfoMedicas(pCliente.getInfoMedicas());
+        cliente.setMedicamentosEmUso(pCliente.getMedicamentosEmUso());
+        cliente.setDadosTratamento(pCliente.getDadosTratamento());
         return repository.save(cliente);
     }
 
@@ -34,7 +47,7 @@ public class ClienteService {
         return repository.findAll();
     }
 
-    public Clientes atualizar(Integer pId, Clientes pCliente) {
+    public Clientes atualizar(Integer pId, ClienteResources pCliente) {
 
         Clientes cliente = buscarPorId(pId);
 
@@ -48,9 +61,6 @@ public class ClienteService {
         cliente.setInfoMedicas(pCliente.getInfoMedicas());
         cliente.setMedicamentosEmUso(pCliente.getMedicamentosEmUso());
         cliente.setDadosTratamento(pCliente.getDadosTratamento());
-        cliente.setResponsaveis(pCliente.getResponsaveis());
-        cliente.setEndereco(pCliente.getEndereco());
-        cliente.setProtocolos(pCliente.getProtocolos());
 
         return repository.save(cliente);
     }
