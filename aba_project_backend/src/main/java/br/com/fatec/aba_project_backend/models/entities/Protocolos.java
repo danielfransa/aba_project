@@ -5,6 +5,8 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -22,21 +24,22 @@ public class Protocolos {
 
     @Column
     @Temporal(TemporalType.DATE)
-    private Date validade;
+    private LocalDate validade;
 
-    @ManyToMany(mappedBy = "protocolos")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
     private List<Clientes> clientes;
 
-    @OneToMany(mappedBy = "protocolo")
+    @OneToMany(mappedBy = "protocolo", fetch = FetchType.LAZY)
     private List<BlocoAplicacoes> blocosDeAplicacao;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt;
+    private Instant createdAt;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = false)
-    private Date updatedAt;
+    private Instant updatedAt;
 }

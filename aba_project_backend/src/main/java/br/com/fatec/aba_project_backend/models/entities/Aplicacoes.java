@@ -5,7 +5,9 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,24 +27,23 @@ public class Aplicacoes {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column(length = 50)
-    private Status dica;
+    @Column(columnDefinition = "TEXT")
+    private String dica;
 
     @Column(columnDefinition = "TEXT")
-    private Status observacao;
+    private String observacao;
 
-    @ManyToOne
-    @JoinColumn(name = "bloco_aplicacoes_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private BlocoAplicacoes blocoAplicacoes;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt;
+    private Instant createdAt;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = false)
-    private Date updatedAt;
+    private Instant updatedAt;
 
 }

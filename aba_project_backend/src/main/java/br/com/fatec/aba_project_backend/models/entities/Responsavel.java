@@ -5,13 +5,13 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "responsaveis")
-public class Responsaveis {
+public class Responsavel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,20 +32,20 @@ public class Responsaveis {
     @Column(length = 50)
     private String telefone;
 
-    @ManyToMany(mappedBy = "responsaveis")
+    @ManyToMany(mappedBy = "responsaveis", fetch = FetchType.LAZY)
     private List<Clientes> clientes;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Enderecos endereco;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt;
+    private Instant createdAt;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = false)
-    private Date updatedAt;
+    private Instant updatedAt;
 }

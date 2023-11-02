@@ -5,7 +5,8 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.Date;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -22,7 +23,7 @@ public class Clientes {
 
     @Column
     @Temporal(TemporalType.DATE)
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
@@ -49,30 +50,30 @@ public class Clientes {
     private String dadosTratamento;
 
 
-    //TODO ajustar relacionamentos não esta funcionando com eles:
-    @ManyToMany
-    private List<Responsaveis> responsaveis;
+    //TODO ajustar relacionamentos não esta funcionando corretamente com eles:
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "cliente_responsaveis",
+            joinColumns = @JoinColumn(name = "cliente_id"),
+            inverseJoinColumns = @JoinColumn(name = "responsaveis_id")
+    )
+    private List<Responsavel> responsaveis;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Enderecos endereco;
 
-    @ManyToMany
-    @JoinTable(
-            name = "cliente_protocolo",
-            joinColumns = @JoinColumn(name = "cliente_id"),
-            inverseJoinColumns = @JoinColumn(name = "protocolo_id")
-    )
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Protocolos> protocolos;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt;
+    private Instant createdAt;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = false)
-    private Date updatedAt;
+    private Instant updatedAt;
 
 }
