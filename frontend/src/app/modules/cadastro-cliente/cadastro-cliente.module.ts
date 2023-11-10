@@ -5,12 +5,16 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CadastroResponsavelComponent } from './cadastro-responsavel/cadastro-responsavel.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 
 
 @NgModule({
   declarations: [
-    CadastroClienteComponent
+    CadastroClienteComponent,
+    CadastroResponsavelComponent,
+    CadastroComponent
   ],
   imports: [
     SharedModule,

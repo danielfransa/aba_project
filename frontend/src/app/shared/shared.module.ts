@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatSelectModule
   ],
   exports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatInputModule,
     MatIconModule,
     MatExpansionModule,
+    MatSelectModule,
     HeaderComponent,
     FooterComponent,
   ]

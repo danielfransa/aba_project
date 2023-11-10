@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home/home.component';
 import { CadastroClienteComponent } from './modules/cadastro-cliente/cadastro-cliente/cadastro-cliente.component';
 import { ClienteComponent } from './modules/cliente/cliente/cliente.component';
+import { CadastroResponsavelComponent } from './modules/cadastro-cliente/cadastro-responsavel/cadastro-responsavel.component';
+import { CadastroComponent } from './modules/cadastro-cliente/cadastro/cadastro.component';
 
 const routes: Routes = [
   {
@@ -15,8 +17,18 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
+    component: CadastroComponent,
     path: 'cadastro-cliente',
-    component: CadastroClienteComponent
+    children: [
+      {
+        path: '',
+        component: CadastroClienteComponent,
+      },
+      {
+        path: 'cadastro-responsavel',
+        component: CadastroResponsavelComponent,
+      }
+    ]
   },
   {
     path: 'cliente/:id',

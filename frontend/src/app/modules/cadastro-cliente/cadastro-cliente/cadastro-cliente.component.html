@@ -26,8 +26,175 @@
                     </mat-form-field>
                 </div>
             </div>
-            <div class="mt-5">
-                <button mat-raised-button color="primary" [disabled]="formCadastro.invalid" (click)="save()">Cadastrar</button>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <label for="dataNascimento" [ngClass]="formCadastro.get('dataNascimento')?.invalid && formCadastro.get('dataNascimento')?.touched ? 'text-color-error' : ''">Data de nascimento</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input type="date" formControlName="dataNascimento" matInput placeholder="dataNascimento do cliente" id="dataNascimento">
+                        <mat-error *ngIf="formCadastro.get('dataNascimento')?.invalid">
+                            <span>Data de nascimento do cliente é obrigatorio</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <label for="cpfCliente" [ngClass]="formCadastro.get('cpf')?.invalid && formCadastro.get('cpf')?.touched ? 'text-color-error' : ''">CPF</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input type="text" formControlName="cpf" matInput  id="cpfCliente" placeholder="CPF do cliente">
+                        <mat-error *ngIf="formCadastro.get('cpf')?.invalid">
+                            <span>CPF do cliente é obrigatorio</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <label for="telefoneCliente" [ngClass]="formCadastro.get('telefone')?.invalid && formCadastro.get('telefone')?.touched ? 'text-color-error' : ''">Telefone</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input type="tel" formControlName="telefone" matInput placeholder="telefone do cliente" id="telefoneCliente">
+                        <mat-error *ngIf="formCadastro.get('telefone')?.invalid">
+                            <span>Telefone do cliente é obrigatorio</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <label for="sexoCliente" [ngClass]="formCadastro.get('sexo')?.invalid && formCadastro.get('sexo')?.touched ? 'text-color-error' : ''">sexo</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-select formControlName="sexo" id="sexoCliente">
+                            <mat-option value="Masculino">Masculino</mat-option>
+                            <mat-option value="Feminino">Feminino</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formCadastro.get('sexo')?.invalid">
+                            <span>Sexo do cliente é obrigatorio</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-6">
+                    <label for="medicamentosEmUsoCliente" [ngClass]="formCadastro.get('medicamentosEmUso')?.invalid && formCadastro.get('medicamentosEmUso')?.touched ? 'text-color-error' : ''">Medicamentos</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <textarea formControlName="medicamentosEmUso" rows="1" matInput placeholder="Medicamentos em uso do cliente" id="medicamentosEmUsoCliente"></textarea>
+                        <mat-error *ngIf="formCadastro.get('medicamentosEmUso')?.invalid">
+                            <span>Medicamentos em uso do cliente é obrigatorio</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <label for="grauEscolaridadeCliente" [ngClass]="formCadastro.get('grauEscolaridade')?.invalid && formCadastro.get('grauEscolaridade')?.touched ? 'text-color-error' : ''">Grau de Escolaridade</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <input type="text" formControlName="grauEscolaridade" id="grauEscolaridadeCliente" matInput placeholder="Grau de Escolaridade do cliente">
+                        <mat-error *ngIf="formCadastro.get('grauEscolaridade')?.invalid">
+                            <span>Grau de Escolaridade do cliente é obrigatorio</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <label for="dadosTratamentoCliente" [ngClass]="formCadastro.get('dadosTratamento')?.invalid && formCadastro.get('dadosTratamento')?.touched ? 'text-color-error' : ''">Dados Tratamento</label>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <textarea formControlName="dadosTratamento" rows="10" matInput placeholder="Dados Tratamento do cliente" id="dadosTratamentoCliente"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row mt-4" formGroupName="endereco">
+                <h2>Endereço:</h2>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <label for="ruaCliente" [ngClass]="formCadastro.get('endereco')?.get('rua')?.invalid && formCadastro.get('endereco')?.get('rua')?.touched ? 'text-color-error' : ''">Rua</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input type="text" formControlName="rua" matInput placeholder="Rua do cliente" id="ruaCliente">
+                            <mat-error *ngIf="formCadastro.get('endereco')?.get('rua')?.invalid">
+                                <span>Rua do cliente é obrigatorio</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <label for="cepCliente" [ngClass]="formCadastro.get('endereco')?.get('cep')?.invalid && formCadastro.get('endereco')?.get('cep')?.touched ? 'text-color-error' : ''">CEP</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input type="text" formControlName="cep" matInput placeholder="cep do cliente" id="cepCliente">
+                            <mat-error *ngIf="formCadastro.get('endereco')?.get('cep')?.invalid">
+                                <span>Cep do cliente é obrigatorio</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <label for="numeroCliente" [ngClass]="formCadastro.get('endereco')?.get('numero')?.invalid && formCadastro.get('endereco')?.get('numero')?.touched ? 'text-color-error' : ''">Número</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input type="number" formControlName="numero" matInput placeholder="Número do cliente" id="numeroCliente">
+                            <mat-error *ngIf="formCadastro.get('endereco')?.get('numero')?.invalid">
+                                <span>Número do cliente é obrigatorio</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <label for="complementoCliente" [ngClass]="formCadastro.get('endereco')?.get('complemento')?.invalid && formCadastro.get('endereco')?.get('complemento')?.touched ? 'text-color-error' : ''">Complemento</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input type="text" formControlName="complemento" matInput placeholder="Complemento do cliente" id="complementoCliente">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <label for="bairroCliente" [ngClass]="formCadastro.get('endereco')?.get('bairro')?.invalid && formCadastro.get('endereco')?.get('bairro')?.touched ? 'text-color-error' : ''">Bairro</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input type="text" formControlName="bairro" matInput placeholder="Bairro do cliente" id="bairroCliente">
+                            <mat-error *ngIf="formCadastro.get('endereco')?.get('bairro')?.invalid">
+                                <span>Bairro do cliente é obrigatorio</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <label for="cidadeCliente" [ngClass]="formCadastro.get('endereco')?.get('cidade')?.invalid && formCadastro.get('endereco')?.get('cidade')?.touched ? 'text-color-error' : ''">Cidade</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input type="text" formControlName="cidade" matInput placeholder="Cidade do cliente" id="cidadeCliente">
+                            <mat-error *ngIf="formCadastro.get('endereco')?.get('cidade')?.invalid">
+                                <span>Cidade do cliente é obrigatorio</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <label for="estadoCliente" [ngClass]="formCadastro.get('endereco')?.get('estado')?.invalid && formCadastro.get('endereco')?.get('estado')?.touched ? 'text-color-error' : ''">Estado</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input type="text" formControlName="estado" matInput placeholder="Estado do cliente" id="estadoCliente">
+                            <mat-error *ngIf="formCadastro.get('endereco')?.get('estado')?.invalid">
+                                <span>Estado do cliente é obrigatorio</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4" *ngIf="cliente?.responsaveis && cliente?.responsaveis!.length > 0">
+                <h2>Responsáveis Cadastrados</h2>
+                <mat-accordion>
+                    <mat-expansion-panel class="mt-3 mb-3" *ngFor="let cliente of cliente?.responsaveis">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          <h5>{{cliente.nome}}</h5>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <div class="row">
+                        <div class="col-6 d-flex">
+                            <h6 class="me-1">Email:</h6>
+                            <p>{{cliente.email}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12">
+                            <button mat-raised-button color="primary" [routerLink]="['/cliente', cliente.id]">Acessar cliente</button>                </div>
+                      </div>
+                    </mat-expansion-panel>
+                  </mat-accordion>   
+            </div>
+
+            <div class="d-flex justify-content-between mt-4 mb-5">
+                <button mat-fab extended color="primary" (click)="addResponsavel()">Adicionar Responsavel</button>
+                <button mat-fab extended color="primary" [disabled]="formCadastro.invalid" (click)="save()">Cadastrar</button>
             </div>
         </form>
     </div>
