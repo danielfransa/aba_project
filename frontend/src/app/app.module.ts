@@ -8,6 +8,7 @@ import { CadastroClienteModule } from './modules/cadastro-cliente/cadastro-clien
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ClienteModule } from './modules/cliente/cliente.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ClienteModule } from './modules/cliente/cliente.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     SharedModule,
     HomeModule,
     CadastroClienteModule,

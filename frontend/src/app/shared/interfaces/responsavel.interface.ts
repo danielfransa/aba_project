@@ -1,11 +1,11 @@
-import { IEndereco } from "./endereco.interface";
-
-export interface IResposavel {
-  id?: string;
-  nome: string;
+export interface IResponsavel {
+  id?: number;
+  parent_name: string;
   cpf: string;
   email: string;
-  grauParentesco: string;
-  telefone: string;
-  endereco: IEndereco;
+  degree_of_kinship: string;
+  telephone: string;
+  client_id?: number;
+  created_at?: string;
+  updated_at?: string;
 }

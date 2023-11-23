@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataClienteService } from '../service/data-cliente.service';
-import { ICliente } from 'src/app/shared/interfaces';
+import { ICliente, IResponsavel } from 'src/app/shared/interfaces';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-responsavel',
@@ -12,41 +12,20 @@ import { Router } from '@angular/router';
 export class CadastroResponsavelComponent implements OnInit {
   public form!: FormGroup;
   public cliente: ICliente | null = null;
+  public responsavel: IResponsavel | null = null;
+  public idResponsavel: number | null = null;
 
   constructor(
     private dataService: DataClienteService,
     private router: Router,
     private formBuilder: FormBuilder,
+    private route: ActivatedRoute
   ) {
-    
-    const cli: ICliente = {
-      nome: 'João da Silva',
-      dataNascimento: '2001-12-09',
-      sexo: 'Masculino',
-      cpf: '000.000.000-00',
-      telefone: '19999999999',
-      email: 'joao@gmail.com',
-      grauEscolaridade: 'Cursando ensino médio',
-      infoMedicas: 'N/A',
-      medicamentosEmUso: 'N/A',
-      dadosTratamento: 'N/A',
-      responsaveis: [],
-      endereco: {
-        cep: '12134',
-        rua: 'Av. Basil',
-        numero: 123,
-        complemento: 'sgdsfdfd',
-        bairro: 'fdsfd',
-        cidade: 'araras',
-        estado: 'dfdf',
-      },
-    };
-
+    const id = this.route.snapshot.queryParams['responsavel'];
+    this.idResponsavel = id ? parseInt(id) - 1 : null;
     this.dataService.cliente.subscribe({
-      next: (data) => this.cliente = data
+      next: (data) => this.cliente = data,
     });
-
-    this.dataService.setClient(cli)
   }
 
   ngOnInit(): void {
@@ -54,30 +33,45 @@ export class CadastroResponsavelComponent implements OnInit {
   }
 
   public createForm(): void {
+    if(this.idResponsavel !== null && this.cliente?.responsible) {
+        this.responsavel = this.cliente.responsible[this.idResponsavel];
+    }
+   
     this.form = this.formBuilder.group({
-      nome: [null, [Validators.required]],
-      cpf: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.email]],
-      grauParentesco: [null, [Validators.required]],
-      telefone: [null, [Validators.required]],
-      endereco: this.formBuilder.group({
-        cep: [null, [Validators.required]],
-        rua: [null, [Validators.required]],
-        numero: [null, [Validators.required]],
-        complemento: [null || ''],
-        bairro: [null, [Validators.required]],
-        cidade: [null, [Validators.required]],
-        estado: [null, [Validators.required]],
-      }),
+      parent_name: [
+        this.responsavel?.parent_name || null,
+        [Validators.required],
+      ],
+      cpf: [
+        this.responsavel?.cpf || null,
+        [Validators.required],
+      ],
+      email: [
+        this.responsavel?.email || null,
+        [Validators.required, Validators.email],
+      ],
+      degree_of_kinship: [
+        this.responsavel?.degree_of_kinship || null,
+        [Validators.required],
+      ],
+      telephone: [
+        this.responsavel?.telephone || null,
+        [Validators.required],
+      ],
     });
   }
 
   public addResponsavel(): void {
-    if(this.cliente) {
+    if (this.cliente) {
       const responsavel = this.form.getRawValue();
-      this.cliente.responsaveis?.push(responsavel);
+      if(this.idResponsavel !== null && this.cliente?.responsible) {
+        this.cliente.responsible[this.idResponsavel] = responsavel;
+      } else {
+        this.cliente.responsible?.push(responsavel);
+      }
+     
       this.dataService.setClient(this.cliente);
-      this.router.navigate(['/cadastro-cliente'])
+      this.router.navigate(['/cadastro-cliente']);
     }
   }
 }

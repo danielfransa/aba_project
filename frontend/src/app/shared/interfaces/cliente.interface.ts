@@ -1,18 +1,25 @@
-import { IEndereco } from "./endereco.interface";
-import { IResposavel } from "./responsavel.interface";
+import { IResponsavel } from './responsavel.interface';
 
 export interface ICliente {
-  id?: string;
-  nome: string;
-  dataNascimento: string;
-  sexo: string;
+  id?: number;
+  name: string;
+  brithday: string;
+  gender: string;
   cpf: string;
-  telefone: string;
+  telephone: string;
   email: string;
-  grauEscolaridade?: string;
-  infoMedicas?: string;
-  medicamentosEmUso?: string;
-  dadosTratamento?: string;
-  responsaveis?: IResposavel[];
-  endereco: IEndereco;
+  education_level?: string;
+  medical_informations?: string;
+  medicines_in_use?: string;
+  processing_information?: string;
+  cep: string;
+  street: string;
+  number: number;
+  complement?: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  responsible?: IResponsavel[];
+  created_at?: string;
+  updated_at?: string;
 }

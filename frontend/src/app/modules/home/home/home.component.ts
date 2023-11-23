@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ICliente } from 'src/app/shared/interfaces';
 import { ClienteService } from 'src/app/shared/services';
 
 @Component({
@@ -8,12 +9,14 @@ import { ClienteService } from 'src/app/shared/services';
 })
 export class HomeComponent implements OnInit {
 
-  listaCliente: any[] = [];
+  listaCliente: ICliente[] = [];
 
   constructor(private clienteService: ClienteService) {}
 
   ngOnInit(): void {
-    this.listaCliente = this.clienteService.getClientes();
-    console.log(this.clienteService.getClientes());
+    this.clienteService.getAllClients().subscribe({
+      next: (response) => this.listaCliente = response,
+      error: (err) => console.error(err)
+    })
   }
 }

@@ -7,20 +7,24 @@
     <form [formGroup]="form">
         <div class="row mt-4">
             <div class="col-6">
-                <label for="nomeResponsavel" [ngClass]="form.get('nome')?.invalid && form.get('nome')?.touched ? 'text-color-error' : ''">Nome</label>
+                <label for="nomeResponsavel" [ngClass]="form.get('parent_name')?.invalid && form.get('parent_name')?.touched ? 'text-color-error' : ''">Nome</label>
                 <mat-form-field appearance="outline" class="w-100">
-                    <input formControlName="nome" matInput placeholder="Nome do responsável" id="nomeResponsavel">
-                    <mat-error *ngIf="form.get('nome')?.invalid">
-                        <span>Nome do responsável é obrigatorio</span>
+                    <input formControlName="parent_name" matInput placeholder="Nome do responsável" id="nomeResponsavel">
+                    <mat-error *ngIf="form.get('parent_name')?.invalid">
+                        <span>Nome do responsável é obrigatório</span>
                     </mat-error>
                 </mat-form-field>
             </div>
             <div class="col-6">
                 <label for="emailResponsavel" [ngClass]="form.get('email')?.invalid && form.get('email')?.touched ? 'text-color-error' : ''">Email</label>
                 <mat-form-field appearance="outline" class="w-100">
-                    <input type="email" formControlName="email" matInput placeholder="Ex. respon@example.com" id="emailResponsavel">
+                    <input type="email" formControlName="email" matInput placeholder="Ex. respon@exemplo.com" id="emailResponsavel">
                     <mat-error *ngIf="form.get('email')?.invalid">
-                        <span>Email do responsável é obrigatorio</span>
+                        <span *ngIf="form.get('email')?.errors?.['required']" >Email do responsável é obrigatório</span>
+                        <span *ngIf="
+                            !form.get('email')?.errors?.['required'] &&
+                            form.get('email')?.errors?.['email']
+                        ">Email deve ser válido</span> 
                     </mat-error>
                 </mat-form-field>
             </div>
@@ -30,101 +34,30 @@
                 <label for="cpfResponsavel" [ngClass]="form.get('cpf')?.invalid && form.get('cpf')?.touched ? 'text-color-error' : ''">CPF</label>
                 <mat-form-field appearance="outline" class="w-100">
                     <input type="text" formControlName="cpf" matInput  id="cpfResponsavel" placeholder="CPF do Responsável">
-                    <mat-error *ngIf="form.get('nome')?.invalid">
-                        <span>CPF do responsável é obrigatorio</span>
+                    <mat-error *ngIf="form.get('cpf')?.invalid">
+                        <span>CPF do responsável é obrigatório</span>
                     </mat-error>
                 </mat-form-field>
             </div>
             <div class="col-6">
-                <label for="telefoneResponsavel" [ngClass]="form.get('telefone')?.invalid && form.get('telefone')?.touched ? 'text-color-error' : ''">Telefone</label>
+                <label for="telefoneResponsavel" [ngClass]="form.get('telephone')?.invalid && form.get('telephone')?.touched ? 'text-color-error' : ''">Telefone</label>
                 <mat-form-field appearance="outline" class="w-100">
-                    <input type="tel" formControlName="telefone" matInput placeholder="telefone do Responsavel" id="telefoneResponsavel">
-                    <mat-error *ngIf="form.get('telefone')?.invalid">
-                        <span>Telefone do responsável é obrigatorio</span>
+                    <input type="tel" formControlName="telephone" matInput placeholder="telefone do Responsavel" id="telefoneResponsavel">
+                    <mat-error *ngIf="form.get('telephone')?.invalid">
+                        <span>Telefone do responsável é obrigatório</span>
                     </mat-error>
                 </mat-form-field>
             </div>
         </div>
         <div class="row mt-4">
             <div class="col-6">
-                <label for="grauParentesco" [ngClass]="form.get('grauParentesco')?.invalid && form.get('grauParentesco')?.touched ? 'text-color-error' : ''">Grau de Escolaridade</label>
+                <label for="grauParentesco" [ngClass]="form.get('degree_of_kinship')?.invalid && form.get('degree_of_kinship')?.touched ? 'text-color-error' : ''">Grau de Parentesco</label>
                 <mat-form-field appearance="outline" class="w-100">
-                    <input type="text" formControlName="grauParentesco" id="grauParentesco" matInput placeholder="Grau de parentesco">
-                    <mat-error *ngIf="form.get('grauParentesco')?.invalid">
-                        <span>Grau de Parentesco do responsável é obrigatorio</span>
+                    <input type="text" formControlName="degree_of_kinship" id="grauParentesco" matInput placeholder="Grau de parentesco">
+                    <mat-error *ngIf="form.get('degree_of_kinship')?.invalid">
+                        <span>Grau de parentesco do responsável é obrigatório</span>
                     </mat-error>
                 </mat-form-field>
-            </div>
-        </div>
-        <div class="row mt-4" formGroupName="endereco">
-            <h2>Endereço:</h2>
-            <div class="row mt-4">
-                <div class="col-6">
-                    <label for="ruaResponsavel" [ngClass]="form.get('endereco')?.get('rua')?.invalid && form.get('endereco')?.get('rua')?.touched ? 'text-color-error' : ''">Rua</label>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <input type="text" formControlName="rua" matInput placeholder="Rua do Responsavel" id="ruaResponsavel">
-                        <mat-error *ngIf="form.get('endereco')?.get('rua')?.invalid">
-                            <span>Rua do Responsavel é obrigatorio</span>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-6">
-                    <label for="cepCliente" [ngClass]="form.get('endereco')?.get('cep')?.invalid && form.get('endereco')?.get('cep')?.touched ? 'text-color-error' : ''">CEP</label>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <input type="text" formControlName="cep" matInput placeholder="cep do cliente" id="cepCliente">
-                        <mat-error *ngIf="form.get('endereco')?.get('cep')?.invalid">
-                            <span>Cep do cliente é obrigatorio</span>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-6">
-                    <label for="numeroCliente" [ngClass]="form.get('endereco')?.get('numero')?.invalid && form.get('endereco')?.get('numero')?.touched ? 'text-color-error' : ''">Número</label>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <input type="number" formControlName="numero" matInput placeholder="Número do cliente" id="numeroCliente">
-                        <mat-error *ngIf="form.get('endereco')?.get('numero')?.invalid">
-                            <span>Número do cliente é obrigatorio</span>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-6">
-                    <label for="complementoCliente" [ngClass]="form.get('endereco')?.get('complemento')?.invalid && form.get('endereco')?.get('complemento')?.touched ? 'text-color-error' : ''">Complemento</label>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <input type="text" formControlName="complemento" matInput placeholder="Complemento do cliente" id="complementoCliente">
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-6">
-                    <label for="bairroCliente" [ngClass]="form.get('endereco')?.get('bairro')?.invalid && form.get('endereco')?.get('bairro')?.touched ? 'text-color-error' : ''">Bairro</label>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <input type="text" formControlName="bairro" matInput placeholder="Bairro do cliente" id="bairroCliente">
-                        <mat-error *ngIf="form.get('endereco')?.get('bairro')?.invalid">
-                            <span>Bairro do cliente é obrigatorio</span>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="col-6">
-                    <label for="cidadeCliente" [ngClass]="form.get('endereco')?.get('cidade')?.invalid && form.get('endereco')?.get('cidade')?.touched ? 'text-color-error' : ''">Cidade</label>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <input type="text" formControlName="cidade" matInput placeholder="Cidade do cliente" id="cidadeCliente">
-                        <mat-error *ngIf="form.get('endereco')?.get('cidade')?.invalid">
-                            <span>Cidade do cliente é obrigatorio</span>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-6">
-                    <label for="estadoCliente" [ngClass]="form.get('endereco')?.get('estado')?.invalid && form.get('endereco')?.get('estado')?.touched ? 'text-color-error' : ''">Estado</label>
-                    <mat-form-field appearance="outline" class="w-100">
-                        <input type="text" formControlName="estado" matInput placeholder="Estado do cliente" id="estadoCliente">
-                        <mat-error *ngIf="form.get('endereco')?.get('estado')?.invalid">
-                            <span>Estado do cliente é obrigatorio</span>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
             </div>
         </div>
         <div class="d-flex justify-content-between mt-4 mb-5">

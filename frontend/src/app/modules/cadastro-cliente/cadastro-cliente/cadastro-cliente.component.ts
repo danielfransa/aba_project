@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/shared/services';
 import { DataClienteService } from '../service/data-cliente.service';
@@ -24,7 +24,6 @@ export class CadastroClienteComponent implements OnInit {
       next: (data) => {
         if(data) {
           this.cliente = data;
-          console.log(data);
         }
       }
     })
@@ -36,41 +35,69 @@ export class CadastroClienteComponent implements OnInit {
 
   save() {
     const cliente = this.formCadastro.getRawValue();
-    cliente.id = self.crypto.randomUUID();
-    this.clienteService.saveCliente(cliente);
-    this.formCadastro.reset();
-    this.router.navigate(['/home']);
+    this.clienteService.saveClient(cliente).subscribe({
+      next: (resp) => {
+        if(resp.id) {
+          this.cliente?.responsible?.forEach( (item) => {
+            this.clienteService.saveResponsible(item, resp.id!).subscribe({
+              error: (err) => console.error(err)
+            })
+          });
+          this.formCadastro.reset();
+          this.router.navigate(['/home']);
+        }
+      },
+      error: (err) => console.error(err)
+    })
   }
 
   createForm(): void {
     this.formCadastro = this.formBuilder.group({
-      nome: [ this.cliente?.nome || '', [Validators.required] ],
+      name: [ this.cliente?.name || '', [Validators.required] ],
       email: [this.cliente?.email || '', [Validators.required, Validators.email]],
-      dataNascimento: [this.cliente?.dataNascimento || '', [Validators.required]],
-      sexo: [this.cliente?.sexo || '', [Validators.required]],
+      brithday: [this.cliente?.brithday || '', [Validators.required]],
+      gender: [this.cliente?.gender || '', [Validators.required]],
       cpf: [this.cliente?.cpf || '', [Validators.required]],
-      telefone: [this.cliente?.telefone || '', [Validators.required]],
-      grauEscolaridade: [this.cliente?.grauEscolaridade || ''],
-      infoMedicas: [this.cliente?.infoMedicas || ''],
-      medicamentosEmUso: [this.cliente?.medicamentosEmUso || ''],
-      dadosTratamento: [this.cliente?.dadosTratamento || ''],
-      endereco: this.formBuilder.group({
-        cep: [this.cliente?.endereco.cep || '', [Validators.required]],
-        rua: [this.cliente?.endereco.rua || '', [Validators.required]],
-        numero: [this.cliente?.endereco.numero || '', [Validators.required]],
-        complemento: [this.cliente?.endereco.complemento || ''],
-        bairro: [this.cliente?.endereco.bairro || '', [Validators.required]],
-        cidade: [this.cliente?.endereco.cidade || '', [Validators.required]],
-        estado: [this.cliente?.endereco.estado || '', [Validators.required]],
-      }),
-      responsaveis: this.formBuilder.array(this.cliente?.responsaveis || []),
+      telephone: [this.cliente?.telephone || '', [Validators.required]],
+      education_level: [this.cliente?.education_level || ''],
+      medical_informations: [this.cliente?.medical_informations || ''],
+      medicines_in_use: [this.cliente?.medicines_in_use || ''],
+      processing_information: [this.cliente?.processing_information || ''],
+      cep: [this.cliente?.cep || '', [Validators.required]],
+      street: [this.cliente?.street || '', [Validators.required]],
+      number: [this.cliente?.number || '', [Validators.required]],
+      complement: [this.cliente?.complement || ''],
+      neighborhood: [this.cliente?.neighborhood || '', [Validators.required]],
+      city: [this.cliente?.city || '', [Validators.required]],
+      state: [this.cliente?.state || '', [Validators.required]],
+      responsible: this.formBuilder.array(this.cliente?.responsible || []),
     });
   }
 
-  addResponsavel() {
-    this.cliente = this.formCadastro.value
+  addResponsavel(index?: number): void {
+    this.cliente = this.formCadastro.getRawValue();
     this.dataService.setClient(this.formCadastro.value)
-    this.router.navigate(['/cadastro-cliente/cadastro-responsavel'])
+    if(index) {
+      this.router.navigate(
+        ['/cadastro-cliente/cadastro-responsavel'],
+        {
+          queryParams: {
+            responsavel: index
+          }
+        }
+      );
+      return;
+    }
+
+    this.router.navigate(['/cadastro-cliente/cadastro-responsavel']);
+  }
+
+  removeResponsavel(index: number): void {
+    if(this.cliente && this.cliente?.responsible){
+      this.cliente?.responsible.splice(index, 1);
+      this.formCadastro.get('responsible')?.value.splice(index, 1);
+      this.dataService.setClient(this.cliente);
+    }
   }
   
 }
