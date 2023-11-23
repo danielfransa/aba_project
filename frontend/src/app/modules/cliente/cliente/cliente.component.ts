@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap, tap } from 'rxjs';
+import { ICliente } from 'src/app/shared/interfaces';
 import { ClienteService } from 'src/app/shared/services';
 
 @Component({
@@ -8,8 +10,8 @@ import { ClienteService } from 'src/app/shared/services';
   styleUrls: ['./cliente.component.scss'],
 })
 export class ClienteComponent implements OnInit {
-  public cliente: any = null;
-  public idClitente: string = '';
+  public cliente: ICliente | null = null;
+  public idClient: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -17,8 +19,29 @@ export class ClienteComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
-    this.idClitente = this.route.snapshot.paramMap.get('id') || '';
+    this.idClient = this.route.snapshot.paramMap.get('id') || '0';
+    this.getClient(parseInt(this.idClient));
+  }
 
-    this.cliente = this.clienteService.getClientePorId(this.idClitente);
+  getClient(id: number): void {
+    this.clienteService.getClientById(id).subscribe({
+      next: (response) => {
+        this.cliente = response;
+        this.geResponsible(id);
+      },
+      error: (err) => console.error(err)
+    })
+  }
+
+  geResponsible(id: number): void {
+    this.clienteService.getResponsibleByClient(id).subscribe({
+      next: (response) => {
+        if(this.cliente !== null) {
+          this.cliente.responsible = response;
+        }
+        console.log(this.cliente)
+      },
+      error: (err) => console.error(err)
+    })
   }
 }

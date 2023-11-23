@@ -1,0 +1,69 @@
+<h1 class="text-center mt-4">Cadastro de Responsável</h1>
+<div class="mt-4">
+    <button mat-fab extended color="primary" [routerLink]="['../']">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar
+    </button>
+    <form [formGroup]="form">
+        <div class="row mt-4">
+            <div class="col-6">
+                <label for="nomeResponsavel" [ngClass]="form.get('parent_name')?.invalid && form.get('parent_name')?.touched ? 'text-color-error' : ''">Nome</label>
+                <mat-form-field appearance="outline" class="w-100">
+                    <input formControlName="parent_name" matInput placeholder="Nome do responsável" id="nomeResponsavel">
+                    <mat-error *ngIf="form.get('parent_name')?.invalid">
+                        <span>Nome do responsável é obrigatório</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <label for="emailResponsavel" [ngClass]="form.get('email')?.invalid && form.get('email')?.touched ? 'text-color-error' : ''">Email</label>
+                <mat-form-field appearance="outline" class="w-100">
+                    <input type="email" formControlName="email" matInput placeholder="Ex. respon@exemplo.com" id="emailResponsavel">
+                    <mat-error *ngIf="form.get('email')?.invalid">
+                        <span *ngIf="form.get('email')?.errors?.['required']" >Email do responsável é obrigatório</span>
+                        <span *ngIf="
+                            !form.get('email')?.errors?.['required'] &&
+                            form.get('email')?.errors?.['email']
+                        ">Email deve ser válido</span> 
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-6">
+                <label for="cpfResponsavel" [ngClass]="form.get('cpf')?.invalid && form.get('cpf')?.touched ? 'text-color-error' : ''">CPF</label>
+                <mat-form-field appearance="outline" class="w-100">
+                    <input type="text" formControlName="cpf" matInput  id="cpfResponsavel" placeholder="CPF do Responsável">
+                    <mat-error *ngIf="form.get('cpf')?.invalid">
+                        <span>CPF do responsável é obrigatório</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <label for="telefoneResponsavel" [ngClass]="form.get('telephone')?.invalid && form.get('telephone')?.touched ? 'text-color-error' : ''">Telefone</label>
+                <mat-form-field appearance="outline" class="w-100">
+                    <input type="tel" formControlName="telephone" matInput placeholder="telefone do Responsavel" id="telefoneResponsavel">
+                    <mat-error *ngIf="form.get('telephone')?.invalid">
+                        <span>Telefone do responsável é obrigatório</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-6">
+                <label for="grauParentesco" [ngClass]="form.get('degree_of_kinship')?.invalid && form.get('degree_of_kinship')?.touched ? 'text-color-error' : ''">Grau de Parentesco</label>
+                <mat-form-field appearance="outline" class="w-100">
+                    <input type="text" formControlName="degree_of_kinship" id="grauParentesco" matInput placeholder="Grau de parentesco">
+                    <mat-error *ngIf="form.get('degree_of_kinship')?.invalid">
+                        <span>Grau de parentesco do responsável é obrigatório</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between mt-4 mb-5">
+            <button mat-fab extended color="primary"  [disabled]="form.invalid" (click)="addResponsavel()">Adicionar</button>
+        </div>
+    </form>
+</div>
+
+
