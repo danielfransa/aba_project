@@ -1,15 +1,113 @@
 
-<div class="cliente">
+<div class="cliente mb-5">
     <h1 class="text-center mt-4">Informações do Cliente</h1>
     <div class="mt-4">
         <button mat-fab extended color="primary" [routerLink]="['/']">
             <mat-icon>arrow_back</mat-icon>
             Voltar
         </button>
-        
     </div>  
-    <div class="mt-5">
-        <h5 class="me-1">Nome:</h5>
-        <p>{{cliente?.name}}</p>
+    <div class="mt-5 mb-5">
+        <div class="shadow-sm bg-white rounded-2 p-5">
+            <div class="d-flex flex-wrap">
+                <div class="row min-w-50">
+                    <div class="col-6">
+                        <h5>Nome:</h5>
+                        <p>{{cliente?.name}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5>Email:</h5>
+                        <p>{{cliente?.email}}</p>
+                    </div>
+                </div>
+                <div class="row min-w-50">
+                    <div class="col-6">
+                        <h5>Data de nascimento:</h5>
+                        <p>{{cliente?.brithday | date: 'dd/MM/yyyy'}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5>CPF:</h5>
+                        <p>{{cliente?.cpf}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap">
+                <div class="row min-w-50">
+                    <div class="col-6">
+                        <h5>Sexo:</h5>
+                        <p>{{cliente?.gender}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5>Telefone:</h5>
+                        <p>{{cliente?.telephone}}</p>
+                    </div>
+                </div>
+                <div class="row min-w-50">
+                    <div class="col-6" *ngIf="cliente?.education_level">
+                        <h5 class="me-1">Grau de Escolaridade:</h5>
+                        <p>{{cliente?.education_level}}</p>
+                    </div>
+                    <div class="col-6" *ngIf="cliente?.medicines_in_use">
+                        <h5 class="me-1">Medicamentos:</h5>
+                        <p>{{cliente?.medicines_in_use}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="cliente?.medical_informations">
+                <div class="col-12">
+                    <h5 class="me-1">Dados do Tratamento:</h5>
+                    <p>{{cliente?.medical_informations}}</p>
+                </div>
+            </div>
+
+            <h3 class="mt-3">Endereço</h3>
+            <div class="d-flex flex-wrap">
+                <div class="row min-w-50">
+                    <div class="col-6">
+                        <h5>Rua:</h5>
+                        <p>{{cliente?.street}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5>Número:</h5>
+                        <p>{{cliente?.number}}</p>
+                    </div>
+                </div>
+                <div class="row min-w-50">
+                    <div class="col-6">
+                        <h5>Bairro:</h5>
+                        <p>{{cliente?.neighborhood}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5>CEP:</h5>
+                        <p>{{cliente?.cep}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap">
+                <div class="row min-w-50 me-3">
+                    <div class="col-6">
+                        <h5>Cidade:</h5>
+                        <p>{{cliente?.city}}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5>Estado:</h5>
+                        <p>{{cliente?.state}}</p>
+                    </div>
+                </div>
+                <div class="row min-w-50" *ngIf="cliente?.complement">
+                    <div class="col-12">
+                        <h5 class="me-1">Complemento:</h5>
+                        <p>{{cliente?.complement}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+
+    <div class="mt-4">
+        <button mat-fab extended color="primary">
+           Adiconar protocolo
+           <mat-icon>add</mat-icon>
+        </button>
     </div>  
 </div>
