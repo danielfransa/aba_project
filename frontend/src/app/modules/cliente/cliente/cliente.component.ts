@@ -1,7 +1,7 @@
+import { ResponsavelService } from './../../../shared/services/responsavel/responsavel.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
-import { ICliente } from 'src/app/shared/interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ICliente, IResponsavel } from 'src/app/shared/interfaces';
 import { ClienteService } from 'src/app/shared/services';
 
 @Component({
@@ -16,6 +16,8 @@ export class ClienteComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private clienteService: ClienteService,
+    private responsavelService: ResponsavelService,
+    private router: Router,
   ) {}
   
   ngOnInit(): void {
@@ -27,14 +29,14 @@ export class ClienteComponent implements OnInit {
     this.clienteService.getClientById(id).subscribe({
       next: (response) => {
         this.cliente = response;
-        this.geResponsible(id);
+        this.getResponsible(id);
       },
       error: (err) => console.error(err)
     })
   }
 
-  geResponsible(id: number): void {
-    this.clienteService.getResponsibleByClient(id).subscribe({
+  getResponsible(id: number): void {
+    this.responsavelService.getResponsibleByClient(id).subscribe({
       next: (response) => {
         if(this.cliente !== null) {
           this.cliente.responsible = response;
@@ -43,5 +45,17 @@ export class ClienteComponent implements OnInit {
       },
       error: (err) => console.error(err)
     })
+  }
+
+  acessarResponsavel(event?: IResponsavel): void {
+    this.router.navigate(
+      [`/cliente/${this.idClient}/editar-responsavel`],
+      {
+        queryParams: {
+          cliente: this.idClient,
+          responsavel: event?.id || 0,
+        }
+      }
+    )
   }
 }

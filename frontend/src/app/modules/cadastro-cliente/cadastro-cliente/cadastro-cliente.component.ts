@@ -1,9 +1,10 @@
+import { ResponsavelService } from './../../../shared/services/responsavel/responsavel.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/shared/services';
 import { DataClienteService } from '../service/data-cliente.service';
-import { ICliente } from 'src/app/shared/interfaces';
+import { ICliente, IResponsavel } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -19,6 +20,7 @@ export class CadastroClienteComponent implements OnInit {
     private clienteService: ClienteService,
     private router: Router,
     private dataService: DataClienteService,
+    private responsavelService: ResponsavelService,
   ) {
     this.dataService.cliente.subscribe({
       next: (data) => {
@@ -39,7 +41,7 @@ export class CadastroClienteComponent implements OnInit {
       next: (resp) => {
         if(resp.id) {
           this.cliente?.responsible?.forEach( (item) => {
-            this.clienteService.saveResponsible(item, resp.id!).subscribe({
+            this.responsavelService.saveResponsible(item, resp.id!).subscribe({
               error: (err) => console.error(err)
             })
           });
@@ -74,10 +76,11 @@ export class CadastroClienteComponent implements OnInit {
     });
   }
 
-  addResponsavel(index?: number): void {
+  addResponsavel(event?: IResponsavel): void {
     this.cliente = this.formCadastro.getRawValue();
     this.dataService.setClient(this.formCadastro.value)
-    if(index) {
+    if(event) {
+      const index = this.cliente?.responsible?.indexOf(event);
       this.router.navigate(
         ['/cadastro-cliente/cadastro-responsavel'],
         {
@@ -92,8 +95,9 @@ export class CadastroClienteComponent implements OnInit {
     this.router.navigate(['/cadastro-cliente/cadastro-responsavel']);
   }
 
-  removeResponsavel(index: number): void {
+  removeResponsavel(event: IResponsavel): void {
     if(this.cliente && this.cliente?.responsible){
+      const index = this.cliente?.responsible?.indexOf(event);
       this.cliente?.responsible.splice(index, 1);
       this.formCadastro.get('responsible')?.value.splice(index, 1);
       this.dataService.setClient(this.cliente);
