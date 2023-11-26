@@ -7,10 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MaterialModule } from './material.module';
 
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    FooterComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule,
@@ -24,8 +21,6 @@ import { MaterialModule } from './material.module';
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,
-    HeaderComponent,
-    FooterComponent,
   ]
 })
 export class SharedModule { }

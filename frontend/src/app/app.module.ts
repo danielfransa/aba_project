@@ -6,23 +6,25 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './modules/home/home.module';
 import { CadastroClienteModule } from './modules/cadastro-cliente/cadastro-cliente.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './shared/shared.module';
 import { ClienteModule } from './modules/cliente/cliente.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule,
     HomeModule,
     CadastroClienteModule,
     BrowserAnimationsModule,
     ClienteModule,
+    FooterComponent,
+    HeaderComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

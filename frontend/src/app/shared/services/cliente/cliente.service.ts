@@ -9,19 +9,12 @@ import { Observable } from 'rxjs';
 })
 export class ClienteService {
 
-  public localStorage: any;
   private readonly urlApi = environment.url;
 
-  constructor(private http: HttpClient) { 
-    this.localStorage = window.localStorage;
-  }
+  constructor(private http: HttpClient) { }
 
   saveClient(client: ICliente): Observable<ICliente> {
     return this.http.post<ICliente>(`${this.urlApi}clients`, client);
-  }
-
-  saveResponsible(responsible: IResponsavel, idClient: number): Observable<IResponsavel> {
-    return this.http.post<IResponsavel>(`${this.urlApi}clients/${idClient}/parents`, responsible);
   }
 
   getAllClients(): Observable<ICliente[]> {
@@ -32,7 +25,4 @@ export class ClienteService {
     return this.http.get<ICliente>(`${this.urlApi}clients/${id}`);
   }
 
-  getResponsibleByClient(id: number): Observable<IResponsavel[]> {
-    return this.http.get<IResponsavel[]>(`${this.urlApi}clients/${id}/parents`);
-  }  
 }

@@ -3,8 +3,7 @@ import { DataClienteService } from '../service/data-cliente.service';
 
 @Component({
   selector: 'app-cadastro',
-  templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.scss'],
+  template: '<router-outlet></router-outlet>',
 })
 export class CadastroComponent implements OnDestroy {
   constructor(private dataService: DataClienteService) {}
