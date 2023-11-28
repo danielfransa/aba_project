@@ -5,6 +5,7 @@ import { CadastroClienteComponent } from './modules/cadastro-cliente/cadastro-cl
 import { ClienteComponent } from './modules/cliente/cliente/cliente.component';
 import { CadastroResponsavelComponent } from './modules/cadastro-cliente/cadastro-responsavel/cadastro-responsavel.component';
 import { CadastroComponent } from './modules/cadastro-cliente/cadastro/cadastro.component';
+import { ListarClienteComponent } from './modules/listar-clientes/listar-clientes.component'; 
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'cliente/:id',
     component: ClienteComponent
+  },
+  {
+    path: 'listar-clientes',
+    component: ListarClienteComponent,
   }
 ];
 

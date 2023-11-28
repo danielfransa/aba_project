@@ -1,0 +1,9 @@
+.min-w-50 {
+    min-width: 50%;
+}
+
+@media(max-width: 1000px) {
+    .min-w-50 {
+        min-width: 100%;
+    }
+}

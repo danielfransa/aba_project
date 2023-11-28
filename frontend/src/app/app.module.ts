@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { ClienteModule } from './modules/cliente/cliente.module';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent
