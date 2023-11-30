@@ -41,7 +41,6 @@ export class ClienteComponent implements OnInit {
         if(this.cliente !== null) {
           this.cliente.responsible = response;
         }
-        console.log(this.cliente)
       },
       error: (err) => console.error(err)
     })

@@ -6,6 +6,7 @@ import { ExpansionPanelResponsavelComponent } from 'src/app/shared/components/ex
 import { EditResponsavelClientComponent } from './edit-responsavel-client/edit-responsavel-client.component';
 import { InicioClienteComponent } from './inicio-cliente/inicio-cliente.component';
 import { FormResponsavelComponent } from 'src/app/shared/components/form-responsavel/form-responsavel.component';
+import { EditClienteComponent } from './edit-cliente/edit-cliente.component';
 
 
 
@@ -13,7 +14,8 @@ import { FormResponsavelComponent } from 'src/app/shared/components/form-respons
   declarations: [
     ClienteComponent,
     EditResponsavelClientComponent,
-    InicioClienteComponent
+    InicioClienteComponent,
+    EditClienteComponent
   ],
   imports: [
     SharedModule,

@@ -43,7 +43,6 @@ export class EditResponsavelClientComponent {
       this.service.saveResponsible(event, parseInt(this.idCliente)).subscribe({
         next: (response) => {
           this.router.navigate(['cliente', this.idCliente]);
-          console.log(response);
         }, 
         error: (err) => console.error(err)
       })
@@ -52,7 +51,6 @@ export class EditResponsavelClientComponent {
 
     this.service.updateResponsavel(event, parseInt(this.idCliente), parseInt(this.idResponsavel)).subscribe({
       next: (response) => {
-        console.log(response);
         this.router.navigate(['cliente', this.idCliente]);
       },
       error: (err) => console.error(err)
@@ -62,7 +60,6 @@ export class EditResponsavelClientComponent {
   excluirResponsavel(event: number): void {
     this.service.deleteResponsavel(parseInt(this.idCliente), event).subscribe({
       next: (response) => {
-        console.log(response.message);
         this.router.navigate(['cliente', this.idCliente])
       },
       error: (err) => console.error(err)
