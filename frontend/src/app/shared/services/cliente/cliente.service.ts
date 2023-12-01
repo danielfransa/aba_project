@@ -25,4 +25,7 @@ export class ClienteService {
     return this.http.get<ICliente>(`${this.urlApi}clients/${id}`);
   }
 
+  updateClient(client: ICliente, id: number): Observable<any> {
+    return this.http.put<any>(`${this.urlApi}clients/${id}`, client);
+  }
 }

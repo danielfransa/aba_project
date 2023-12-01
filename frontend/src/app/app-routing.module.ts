@@ -7,6 +7,7 @@ import { CadastroResponsavelComponent } from './modules/cadastro-cliente/cadastr
 import { CadastroComponent } from './modules/cadastro-cliente/cadastro/cadastro.component';
 import { EditResponsavelClientComponent } from './modules/cliente/edit-responsavel-client/edit-responsavel-client.component';
 import { InicioClienteComponent } from './modules/cliente/inicio-cliente/inicio-cliente.component';
+import { EditClienteComponent } from './modules/cliente/edit-cliente/edit-cliente.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path: 'editar-responsavel',
         component: EditResponsavelClientComponent
+      },
+      {
+        path: 'editar-cliente/:id',
+        component: EditClienteComponent,
       }
     ]
   }
