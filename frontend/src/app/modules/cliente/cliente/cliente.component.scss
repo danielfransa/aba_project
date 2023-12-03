@@ -1,13 +1,17 @@
 .min-w-50 {
-    min-width: 50%;
+  min-width: 50%;
 }
 
 .jc-flex-end {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
-@media(max-width: 1000px) {
-    .min-w-50 {
-        min-width: 100%;
-    }
+.ul-none {
+  list-style: none;
+}
+
+@media (max-width: 1000px) {
+  .min-w-50 {
+    min-width: 100%;
+  }
 }

@@ -1,0 +1,15 @@
+<div class="cliente mb-5">
+  <h1 class="text-center mt-4">Protocolo  do {{protocolo.name}}</h1>
+  <div class="mt-5  d-flex justify-content-between align-items-center">
+      <button mat-fab extended color="primary" [routerLink]="['/cliente', idCliente]">
+          <mat-icon>arrow_back</mat-icon>
+          Voltar
+      </button>
+      <button mat-fab extended color="primary">
+        Aplicar protocolo
+    </button>
+  </div> 
+  <div class="mt-5" *ngIf="aplicacoes">
+    <h2>Aplicações do protocolos</h2>
+  </div>
+</div>

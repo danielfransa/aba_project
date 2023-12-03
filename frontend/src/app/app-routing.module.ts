@@ -8,6 +8,7 @@ import { CadastroComponent } from './modules/cadastro-cliente/cadastro/cadastro.
 import { EditResponsavelClientComponent } from './modules/cliente/edit-responsavel-client/edit-responsavel-client.component';
 import { InicioClienteComponent } from './modules/cliente/inicio-cliente/inicio-cliente.component';
 import { EditClienteComponent } from './modules/cliente/edit-cliente/edit-cliente.component';
+import { ProtocoloComponent } from './modules/protocolo/protocolo/protocolo.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
         component: EditClienteComponent,
       }
     ]
+  },
+  {
+    path: 'protocolo',
+    component: ProtocoloComponent
   }
 ];
 

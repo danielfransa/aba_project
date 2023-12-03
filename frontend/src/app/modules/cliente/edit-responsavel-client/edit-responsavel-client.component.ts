@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IResponsavel } from 'src/app/shared/interfaces';
-import { ClienteService, ResponsavelService } from 'src/app/shared/services';
+import { ResponsavelService } from 'src/app/shared/services';
 
 @Component({
   selector: 'app-edit-responsavel-client',
