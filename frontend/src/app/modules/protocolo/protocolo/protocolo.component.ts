@@ -27,6 +27,6 @@ export class ProtocoloComponent implements OnInit {
   }
 
   getProtocolo(id: any): void {
-    this.protocolo = this.service.getProcoloPorId(id);
+    this.protocolo = this.service.getProtocoloPorId(id, this.idCliente);
   }
 }

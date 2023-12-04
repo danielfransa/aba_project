@@ -13,7 +13,7 @@ import { ClienteService } from 'src/app/shared/services';
 })
 export class ClienteComponent implements OnInit {
   public cliente: ICliente | null = null;
-  public idClient: string = '';
+  public idClient: number = 0;
   public formProtocolo!: FormGroup;
   public protocolos: any = [];
 
@@ -27,8 +27,8 @@ export class ClienteComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
-    this.idClient = this.route.snapshot.paramMap.get('id') || '0';
-    this.getClient(parseInt(this.idClient));
+    this.idClient = parseInt(this.route.snapshot.paramMap.get('id') || '0');
+    this.getClient(this.idClient);
     this.createForm();
     this.getProtocolos();
   }
@@ -85,7 +85,7 @@ export class ClienteComponent implements OnInit {
   }
 
   getProtocolos(): void {
-    this.protocolos = this.protocoloService.getProtocolos();
+    this.protocolos = this.protocoloService.getProtocolos(this.idClient);
   }
 
   onCadastrar(): void {
@@ -94,6 +94,7 @@ export class ClienteComponent implements OnInit {
     const procolo = this.formProtocolo.getRawValue();
     procolo.id = self.crypto.randomUUID();
     procolo.status = 1;
+    procolo.idCliente = this.idClient;
     this.protocoloService.saveProtocolo(procolo);
     this.getProtocolos();
   }
