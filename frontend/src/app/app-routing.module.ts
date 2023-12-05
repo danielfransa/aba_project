@@ -9,6 +9,7 @@ import { EditResponsavelClientComponent } from './modules/cliente/edit-responsav
 import { InicioClienteComponent } from './modules/cliente/inicio-cliente/inicio-cliente.component';
 import { EditClienteComponent } from './modules/cliente/edit-cliente/edit-cliente.component';
 import { ProtocoloComponent } from './modules/protocolo/protocolo/protocolo.component';
+import { AplicacaoComponent } from './modules/protocolo/aplicacao/aplicacao.component';
 
 const routes: Routes = [
   {
@@ -54,7 +55,16 @@ const routes: Routes = [
   },
   {
     path: 'protocolo',
-    component: ProtocoloComponent
+    children: [
+      {
+        path: '',
+        component: ProtocoloComponent,
+      },
+      {
+        path: 'aplicacao',
+        component: AplicacaoComponent,
+      }
+    ]
   }
 ];
 
