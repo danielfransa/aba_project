@@ -21,26 +21,28 @@
     </button>
   </div>
   <h2>Aplicações do protocolos</h2>
-  <table mat-table [dataSource]="aplicacoes" class="mat-elevation-z8 mb-4">
-    <ng-container matColumnDef="aplicacao">
-      <th mat-header-cell *matHeaderCellDef>Aplicação</th>
-      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}°</td>
-    </ng-container>
-
-    <ng-container matColumnDef="dataAplicacao">
-      <th mat-header-cell *matHeaderCellDef>Data da aplicação</th>
-      <td mat-cell *matCellDef="let element; let i = index">
-        {{ element.dataAplicacao | date : "dd/MM/yyyy HH:mm" }}
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="percentual">
-      <th mat-header-cell *matHeaderCellDef>Percentual de sucesso</th>
-      <td mat-cell *matCellDef="let element; let i = index">
-        {{ element.parcialDeSucesso }}%
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+  <div *ngIf="aplicacoes?.length > 0">
+    <table mat-table [dataSource]="aplicacoes" class="mat-elevation-z8 mb-4">
+      <ng-container matColumnDef="aplicacao">
+        <th mat-header-cell *matHeaderCellDef>Aplicação</th>
+        <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}°</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="dataAplicacao">
+        <th mat-header-cell *matHeaderCellDef>Data da aplicação</th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          {{ element.dataAplicacao | date : "dd/MM/yyyy HH:mm" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="percentual">
+        <th mat-header-cell *matHeaderCellDef>Percentual de sucesso</th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          {{ element.parcialDeSucesso }}%
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
   <p *ngIf="aplicacoes?.length <= 0">Não foi realizada nenhuma aplicação do protocolo {{ protocolo?.name }}</p>
 </div>
