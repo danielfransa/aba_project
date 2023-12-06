@@ -1,12 +1,23 @@
 <div class="home">
-    <h1 class="text-center mt-4">Instituto Inclusivamente</h1>
-    <div class="mt-4 d-flex">
+    <div class="home__list-client mt-5">
+      <div class="mt-4 d-flex justify-content-between flex-wrap">
+        <h1 class="mb-3">Clientes Cadastrados</h1>
         <button mat-fab extended color="primary" [routerLink]="['/cadastro-cliente']">
             Cadastrar novo cliente
         </button>
-    </div>   
-    <div class="home__list-client mt-5">
-        <h2 class="mb-3">Clientes Cadastrados</h2>
+      </div>   
+        <div class="row mt-4">
+          <div class="col-12" style="max-width: 500px;">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label class="d-flex align-items-center">
+                  <mat-icon style="font-size: 24px;">search</mat-icon>
+                  Pesquisar por cliente
+                </mat-label>
+                <input matInput [formControl]="campoBusca">
+              </mat-form-field>
+          </div>
+          <div *ngIf="clientesEncontrados$ | async"></div>
+      </div>
         <mat-accordion>
           <mat-expansion-panel class="mt-2 mb-2 rounded-2" *ngFor="let cliente of listaCliente">
             <mat-expansion-panel-header class="p-4 h-100">
