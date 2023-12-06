@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProtocoloService } from 'src/app/shared/services';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-aplicacao',
@@ -72,7 +73,7 @@ export class AplicacaoComponent implements OnInit {
     ).length;
     const por = (successfulAttempts / this.resultados.length) * 100 || 0;
     const aplicacao = {
-      id: self.crypto.randomUUID(),
+      id: uuidv4(),
       idProtocolo: this.protocoloId,
       idCliente: this.idCliente,
       resultados: this.resultados,
