@@ -10,6 +10,7 @@ import { ClienteModule } from './modules/cliente/cliente.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { ProtocoloModule } from './modules/protocolo/protocolo.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     ClienteModule,
     FooterComponent,
     HeaderComponent,
+    ProtocoloModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

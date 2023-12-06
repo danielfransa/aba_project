@@ -125,10 +125,63 @@
         </div>
     </div>  
 
-    <div class="mt-4">
-        <button mat-fab extended color="primary">
+    <div class="mt-4 mb-5 d-flex justify-content-between align-items-center">
+        <h2>Protocolos</h2>
+        <button mat-fab extended color="primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
            Adiconar protocolo
            <mat-icon>add</mat-icon>
         </button>
-    </div>  
+    </div> 
+    <div class="mt-5 mb-5">
+        <ul class="mb-2 p-0 ul-none">
+            <li
+                class="p-4 border rounded-2 mb-4 bg-white"
+                *ngFor="let protocolo of protocolos, let i = index"
+            >
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between align-items-center">
+                        <h5 class="m-0">{{protocolo.name}}</h5>
+                        <button mat-raised-button color="primary" 
+                            [routerLink]="['/protocolo']" 
+                            [queryParams]="{cliente: cliente?.id, protocolo: protocolo.id }"
+                        >Acessar Protocolo</button> 
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div> 
+</div>
+
+
+  
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Cadastrar novo protocolo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formProtocolo">
+                <div class="row m-4">
+                    <div class="col-12">
+                        <label for="nomeProtocolo"
+                            [ngClass]="formProtocolo.get('name')?.invalid && formProtocolo.get('name')?.touched ? 'text-color-error' : ''">Nome do protocolo</label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input formControlName="name" matInput placeholder="Nome do protocolo" id="nomeProtocolo">
+                            <mat-error *ngIf="formProtocolo.get('name')?.invalid">
+                                <span>Nome do protocolo é obrigatório</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" mat-fab extended color="warn" class="me-3" data-bs-dismiss="modal" (click)="onCancelar()">Cancelar</button>
+            <button type="button" mat-fab extended color="primary" data-bs-dismiss="modal" [disabled]="formProtocolo.invalid" (click)="onCadastrar()">Cadastrar</button>
+        </div>
+        </div>
+    </div>
 </div>

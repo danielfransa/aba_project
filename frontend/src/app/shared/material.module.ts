@@ -7,6 +7,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatTableModule} from '@angular/material/table';
 
 const materialModules = [
   MatFormFieldModule,
@@ -17,6 +19,8 @@ const materialModules = [
   MatExpansionModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatRadioModule,
+  MatTableModule,
 ];
 @NgModule({
   imports: [...materialModules],

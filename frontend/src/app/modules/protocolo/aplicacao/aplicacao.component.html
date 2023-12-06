@@ -1,0 +1,71 @@
+<div class="cliente mb-5">
+  <h1 class="text-center mt-4">Protocolo {{ protocolo?.name }}</h1>
+  <div class="mt-5 mb-5 d-flex justify-content-between align-items-center">
+    <button
+      mat-fab
+      extended
+      color="primary"
+      [routerLink]="['../']"
+      [queryParams]="{ cliente: idCliente, protocolo: protocoloId }"
+    >
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
+  <div class="shadow-sm bg-white rounded-2 p-5">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Tentativa {{ tentativaAtual }} de {{ maxiTentativas }}</h2>
+      </div>
+    </div>
+    <form [formGroup]="form">
+      <div class="row mt-5">
+        <div class="col-12">
+          <mat-radio-group
+            aria-label="Select an option"
+            class="d-flex justify-content-center"
+            formControlName="result"
+          >
+            <mat-radio-button value="Sucesso">Sucesso</mat-radio-button>
+            <mat-radio-button value="Falha">Falha</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12">
+          <label for="dicaajuda">Dica / Ajuda</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <textarea formControlName="help" rows="2" matInput id="dicaajuda"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12">
+          <label for="observacoes">Observações</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <textarea formControlName="comments" rows="5" matInput id="observacoes"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between mt-4 mb-5">
+        <button mat-fab extended color="warn" class="me-3" (click)="abortar()">Abortar</button>
+        <button 
+          *ngIf="tentativaAtual < maxiTentativas"
+          mat-fab 
+          extended 
+          color="primary" 
+          [disabled]="form.invalid" 
+          (click)="proximaTentativa()"
+        >Próxima Tentativa</button>
+        <button 
+          *ngIf="tentativaAtual >= maxiTentativas"
+          mat-fab 
+          extended 
+          color="primary" 
+          [disabled]="form.invalid" 
+          (click)="finalizar()"
+        >Encerrar Aplicação</button>
+      </div>
+    </form>
+  </div>
+</div>

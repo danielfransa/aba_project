@@ -8,6 +8,8 @@ import { CadastroComponent } from './modules/cadastro-cliente/cadastro/cadastro.
 import { EditResponsavelClientComponent } from './modules/cliente/edit-responsavel-client/edit-responsavel-client.component';
 import { InicioClienteComponent } from './modules/cliente/inicio-cliente/inicio-cliente.component';
 import { EditClienteComponent } from './modules/cliente/edit-cliente/edit-cliente.component';
+import { ProtocoloComponent } from './modules/protocolo/protocolo/protocolo.component';
+import { AplicacaoComponent } from './modules/protocolo/aplicacao/aplicacao.component';
 
 const routes: Routes = [
   {
@@ -48,6 +50,19 @@ const routes: Routes = [
       {
         path: 'editar-cliente/:id',
         component: EditClienteComponent,
+      }
+    ]
+  },
+  {
+    path: 'protocolo',
+    children: [
+      {
+        path: '',
+        component: ProtocoloComponent,
+      },
+      {
+        path: 'aplicacao',
+        component: AplicacaoComponent,
       }
     ]
   }

@@ -1,0 +1,12 @@
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &__circle{
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    background: red;
+  }
+}
