@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICliente, IResponsavel } from 'src/app/shared/interfaces';
 import { ClienteService } from 'src/app/shared/services';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-cliente',
@@ -92,7 +93,7 @@ export class ClienteComponent implements OnInit {
     if(this.formProtocolo.invalid) return;
 
     const procolo = this.formProtocolo.getRawValue();
-    procolo.id = self.crypto.randomUUID();
+    procolo.id = uuidv4();
     procolo.status = 1;
     procolo.idCliente = this.idClient;
     this.protocoloService.saveProtocolo(procolo);
